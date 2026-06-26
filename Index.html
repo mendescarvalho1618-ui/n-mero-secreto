@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jogo do Número Secreto</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f2f2f2;
+    text-align:center;
+    margin-top:50px;
+}
+
+.container{
+    background:white;
+    width:350px;
+    margin:auto;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+}
+
+input{
+    padding:10px;
+    width:100px;
+    font-size:18px;
+}
+
+button{
+    padding:10px 20px;
+    font-size:16px;
+    margin-top:10px;
+}
+
+#mensagem{
+    margin-top:20px;
+    font-size:18px;
+    font-weight:bold;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+<h2>🎯 Adivinhe o Número</h2>
+
+<p>Tente descobrir o número entre <b>1 e 20</b>.</p>
+<p>Você possui <b>5 tentativas</b>.</p>
+
+<input type="number" id="palpite">
+<br><br>
+
+<button onclick="jogar()">Tentar</button>
+
+<p id="tentativas">Tentativas restantes: 5</p>
+
+<p id="mensagem"></p>
+
+</div>
+
+<script>
+
+let numeroSecreto = 13; // Pode trocar por qualquer número
+let tentativas = 5;
+
+function jogar(){
+
+    let palpite = Number(document.getElementById("palpite").value);
+
+    if(tentativas == 0){
+        return;
+    }
+
+    tentativas--;
+
+    if(palpite == numeroSecreto){
+
+        document.getElementById("mensagem").innerHTML =
+        "🎉 Parabéns! Você acertou!";
+
+        document.getElementById("tentativas").innerHTML =
+        "Fim do jogo!";
+
+        return;
+    }
+
+    if(palpite > numeroSecreto){
+        document.getElementById("mensagem").innerHTML =
+        "O número informado é MAIOR que o número secreto.";
+    }else{
+        document.getElementById("mensagem").innerHTML =
+        "O número informado é MENOR que o número secreto.";
+    }
+
+    document.getElementById("tentativas").innerHTML =
+    "Tentativas restantes: " + tentativas;
+
+    if(tentativas == 0){
+        document.getElementById("mensagem").innerHTML =
+        "❌ Você perdeu! O número secreto era " + numeroSecreto + ".";
+    }
+
+}
+
+</script>
+
+</body>
+</html>
